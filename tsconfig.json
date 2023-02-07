@@ -1,11 +1,12 @@
 {
     "compilerOptions": {
+        "jsx": "react",
         "target": "es5",
         "moduleResolution": "node",
         "module": "es2015",
         "lib": ["dom", "es5", "es6", "es7"],
         "sourceMap": true,
-        "strict": false,
+        "strict": true,
         "experimentalDecorators": true,
         "esModuleInterop": true,
 		"outDir": "lib/",

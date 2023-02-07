@@ -2,53 +2,66 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: '../src/app.ts',
+    mode: 'development',
+    entry: "../src/index.jsx",
     output: {
-        path: path.resolve(__dirname, '../dist'),
-        filename: 'app.js'
+        path: path.resolve(__dirname, "../dist"),
+        filename: "index.js",
     },
 
     module: {
         rules: [
             {
+                test: /\.jsx?$/,
+                loader: "babel-loader",
+            },
+            {
                 test: /\.tsx?$/,
-                loader: 'ts-loader'
+
+                loader: "ts-loader",
             },
             {
                 test: /\.css$/,
-                use: [{ loader: 'style-loader' }, { loader: 'css-loader' }]
+                use: [{ loader: "style-loader" }, { loader: "css-loader" }],
             },
             {
                 test: /\.html$/,
                 use: [
                     {
-                        loader: 'html-loader'
-                    }
-                ]
+                        loader: "html-loader",
+                    },
+                ],
             },
             {
                 test: /\.(woff2?|eot|ttf|otf|png|gif|jpg|jpeg)(\?.*)?$/,
-                loader: 'file-loader'
-            }
-        ]
+                loader: "file-loader",
+            },
+        ],
     },
 
     resolve: {
-        extensions: ['.js', '.json', '.jsx', '.ts', '.tsx', '.css', '.jpg', '.jpeg', '.png', '.gif']
+        extensions: [
+            ".js",
+            ".json",
+            ".jsx",
+            ".ts",
+            ".tsx",
+            ".css",
+            ".jpg",
+            ".jpeg",
+            ".png",
+            ".gif",
+        ],
     },
 
-    devtool: 'source-map',
+    devtool: "source-map",
     context: __dirname,
-    target: 'web',
+    target: "web",
     devServer: {
-        proxy: {
-            '/api': 'http://localhost:3000'
-        },
         compress: false,
         historyApiFallback: false,
         hot: true,
-        overlay: true
     },
 
-    plugins: [new HtmlWebpackPlugin()]
+    plugins: [new HtmlWebpackPlugin({template: '../src/index.html'})],
 };
