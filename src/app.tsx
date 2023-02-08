@@ -1,22 +1,26 @@
 import "./app.css";
 import Teste from "./components/teste";
-import UI from "./lib/UI";
+import UI, { UIRef } from "./lib/UI";
 
 import React, { useRef, useEffect, useState } from "react";
+import setRef from "./lib/setRef";
 
 const App = () => {
-    const [ui, initUI] = useState(undefined);
-    let canvasRef = useRef(undefined);
+    let uiRef = useRef<UIRef>();
 
     useEffect(() => {
-        if (!canvasRef) return;
+        if (!uiRef.current) return;
 
-        // ui.addElement(new Teste);
-    }, [ui, initUI]);
+        uiRef.current.addElement(new Teste(3));
+    }, [uiRef]);
 
     return (
         <div>
-            <UI width={800} height={600} ></UI>
+            <UI
+                width={800}
+                height={600}
+                ref={setRef(uiRef)}
+            ></UI>
         </div>
     );
 };

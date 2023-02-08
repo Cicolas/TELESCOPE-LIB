@@ -1,5 +1,5 @@
 import React, { Component, useImperativeHandle } from 'react';
-import UI from '../lib/UI';
+import UI, { UIRef } from '../lib/UI';
 import UIObjectReact, { UIProps, UIReactElement } from '../lib/UIObject';
 
 interface ITesteProps extends UIProps {
@@ -23,9 +23,9 @@ export default class Teste extends UIObjectReact {
         super();
     }
 
-    getProp<T extends UIProps>(ui: UI, props: UIProps): UIProps | T {
-        return {...super.getProp(ui, props), n: this.n} as ITesteProps;
+    getProp<T extends UIProps>(props: UIProps): UIProps | T {
+        return {...super.getProp(props), n: this.n} as ITesteProps;
     }
 
-    init(ui: UI): void {}
+    init(ui: UIRef): void {}
 }

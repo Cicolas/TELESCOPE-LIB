@@ -1,7 +1,8 @@
 import React, { createRef, Ref, useRef } from "react";
-import UI from "./UI";
+import UI, { UIRef } from "./UI";
 
 export interface UIProps {
+    uiRef: UIRef;
     uuid: string;
 }
 
@@ -20,12 +21,12 @@ export default abstract class UIObjectReact {
      * @param props
      * @returns new props
      */
-    getProp<T extends UIProps>(ui: UI, props: UIProps): UIProps | T {
+    getProp<T extends UIProps>(props: UIProps): UIProps | T {
         this.uuid = props.uuid;
         return props;
     }
 
-    init?(ui: UI): void {}
+    init?(ui: UIRef): void {}
 }
 
 // export default interface _UIObjectReact {
